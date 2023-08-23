@@ -43,3 +43,36 @@ footer{
   border: none;
   font-size: 15px;
 }
+
+.hamburger-menu {
+  display: block;
+  background-color: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  padding-right: 12px;
+  transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover {
+  background-color: rgb(29, 34, 80);
+  border-radius: 15px;
+}
+
+#capytech-icon {
+  max-width: 60px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+#top-bar a{
+  text-decoration: none;
+  color: white;
+}
+
+@media(min-width:800px){
+  .hamburger-menu{
+    display: none;
+  }
+}
