@@ -104,6 +104,14 @@ footer {
   color: white;
 }
 
+.video{
+  max-width: 100%;
+}
+
+.thumbnail{
+  max-width: 100%;
+}
+
 @media(min-width:800px) {
   header {
     display: flex;
@@ -117,6 +125,16 @@ footer {
     padding-left: 15px;
     padding-right: 15px;
     font-size: 1rem;
+  }
+
+  .thumbnail{
+    max-width: 400px;
+    border-radius: 10px;
+  }
+
+  .video-title{
+    text-decoration: none;
+    color: white;
   }
 
   #capytech-icon {
