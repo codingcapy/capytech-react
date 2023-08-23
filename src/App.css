@@ -62,7 +62,7 @@ footer {
 }
 
 .hamburger-menu:hover {
-  background-color: rgb(29, 34, 80);
+  background-color: #282c34;
   border-radius: 15px;
 }
 
@@ -78,7 +78,7 @@ footer {
 }
 
 .nav-link:hover {
-  background-color: rgb(23, 48, 80);
+  background-color: #282c34;
 }
 
 
@@ -104,17 +104,39 @@ footer {
   color: white;
 }
 
-.video{
+.video {
   max-width: 100%;
 }
 
-.thumbnail{
+.thumbnail {
   max-width: 100%;
 }
+
+.video-meta {
+  text-decoration: none;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.thumbnail-container {
+  margin-bottom: 30px;
+}
+
+#side-menu {
+  display: none;
+}
+
 
 @media(min-width:800px) {
   header {
     display: flex;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hamburger-menu {
@@ -127,14 +149,28 @@ footer {
     font-size: 1rem;
   }
 
-  .thumbnail{
+  .thumbnail {
     max-width: 400px;
     border-radius: 10px;
   }
 
-  .video-title{
-    text-decoration: none;
-    color: white;
+  .thumbnail-container {
+    margin: 10px;
+  }
+
+  .main-title {
+    padding: 0;
+    padding-bottom: 20px;
+    margin: 0;
+  }
+
+  #main-container {
+    display: flex;
+  }
+
+  #videos-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
   #capytech-icon {
@@ -153,5 +189,24 @@ footer {
 
   #main-nav {
     justify-content: center;
+  }
+
+  #side-menu {
+    display: block;
+    margin-right: 25px;
+  }
+
+  #side-menu ul {
+    list-style: none;
+  }
+
+  #side-menu ul li {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  #side-menu ul li:hover {
+    background-color: #333842;
+    border-radius: 10px;
   }
 }
