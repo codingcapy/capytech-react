@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/capytech-react/static/css/main.888b5857.css",
-    "main.js": "/capytech-react/static/js/main.6e748598.js",
+    "main.css": "/capytech-react/static/css/main.0969173c.css",
+    "main.js": "/capytech-react/static/js/main.60eb577a.js",
     "static/js/787.b6eab9f1.chunk.js": "/capytech-react/static/js/787.b6eab9f1.chunk.js",
     "index.html": "/capytech-react/index.html",
-    "main.888b5857.css.map": "/capytech-react/static/css/main.888b5857.css.map",
-    "main.6e748598.js.map": "/capytech-react/static/js/main.6e748598.js.map",
+    "main.0969173c.css.map": "/capytech-react/static/css/main.0969173c.css.map",
+    "main.60eb577a.js.map": "/capytech-react/static/js/main.60eb577a.js.map",
     "787.b6eab9f1.chunk.js.map": "/capytech-react/static/js/787.b6eab9f1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.888b5857.css",
-    "static/js/main.6e748598.js"
+    "static/css/main.0969173c.css",
+    "static/js/main.60eb577a.js"
   ]
 }
