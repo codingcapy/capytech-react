@@ -174,12 +174,6 @@ footer {
     text-align: center;
   }
 
-  .comment-input {
-    width: 650px;
-    padding: 5px;
-    border-radius: 5px;
-  }
-
   #main-container {
     display: flex;
   }
@@ -228,5 +222,24 @@ footer {
 
   #submit-button {
     padding: 5px;
+  }
+
+
+  #vidplayer-ui {
+    display: flex;
+  }
+
+  #vidplayer-ui2 {
+    width: 60%;
+  }
+
+  #suggested-menu {
+    width: 30%;
+  }
+
+  .comment-input {
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
   }
 }
