@@ -81,6 +81,48 @@ footer {
   background-color: #282c34;
 }
 
+.side-link {
+  text-decoration: none;
+  color: white;
+}
+
+.comment-input {
+  border: solid 1px white;
+  background-color: #282c34;
+  color: white;
+}
+
+.video {
+  max-width: 100%;
+}
+
+.thumbnail {
+  max-width: 100%;
+}
+
+.video-meta {
+  text-decoration: none;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.thumbnail-container {
+  margin-bottom: 30px;
+}
+
+#video-title {
+  display: block;
+  margin-bottom: 0;
+}
+
+#user-id {
+  margin-top: 0;
+}
+
+#side-menu {
+  display: none;
+}
 
 #capytech-icon {
   max-width: 60px;
@@ -104,39 +146,9 @@ footer {
   color: white;
 }
 
-.video {
-  max-width: 100%;
-}
-
-.thumbnail {
-  max-width: 100%;
-}
-
-.video-meta {
-  text-decoration: none;
-  color: white;
-  padding: 0;
-  margin: 0;
-}
-
-.thumbnail-container {
-  margin-bottom: 30px;
-}
-
-#side-menu {
-  display: none;
-}
-
-
 @media(min-width:800px) {
   header {
     display: flex;
-  }
-
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .hamburger-menu {
@@ -159,9 +171,13 @@ footer {
   }
 
   .main-title {
-    padding: 0;
-    padding-bottom: 20px;
-    margin: 0;
+    text-align: center;
+  }
+
+  .comment-input {
+    width: 650px;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   #main-container {
@@ -170,7 +186,7 @@ footer {
 
   #videos-dashboard {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
   #capytech-icon {
@@ -208,5 +224,9 @@ footer {
   #side-menu ul li:hover {
     background-color: #333842;
     border-radius: 10px;
+  }
+
+  #submit-button {
+    padding: 5px;
   }
 }
