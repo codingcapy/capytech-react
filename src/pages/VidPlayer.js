@@ -16,7 +16,7 @@ export function VidPlayer(props) {
                             <h2>Comments</h2>
                             <div>
                                 <input type="text" placeholder="Add a comment..." className="comment-input" />
-                                <button id="submit-button">Submit</button>
+                                <button id="submit-button">Comment</button>
                             </div>
                         </div>
                     </div>
