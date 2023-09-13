@@ -111,13 +111,21 @@ footer {
   margin-bottom: 30px;
 }
 
+.comments{
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  max-width: 95%;
+  background-color: #333842;
+}
+
 #video-title {
   display: block;
   margin-bottom: 0;
 }
 
 #user-id {
-  margin-top: 0;
+  margin: 0;
 }
 
 #side-menu {
@@ -241,5 +249,8 @@ footer {
     padding: 5px;
     border-radius: 5px;
     width: 100%;
+  }
+  .comments{
+    max-width: 100%;
   }
 }

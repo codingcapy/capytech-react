@@ -12,10 +12,12 @@ export function VidPlayer(props) {
                     <h1 id="video-title">{props.title}</h1>
                     <h2 id="user-id">{props.appUser}</h2>
                     <div id="comments-section">
-                        <h2>Comments</h2>
-                        <div>
-                            <input type="text" placeholder="Add a comment..." className="comment-input" />
-                            <button id="submit-button">Submit</button>
+                        <div className="comments">
+                            <h2>Comments</h2>
+                            <div>
+                                <input type="text" placeholder="Add a comment..." className="comment-input" />
+                                <button id="submit-button">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
