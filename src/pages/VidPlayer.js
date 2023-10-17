@@ -2,8 +2,32 @@
 import { Video } from "../components/Video"
 import { Thumbnail } from "../components/Thumbnail"
 import { streamArray } from "./Home"
+import { useState } from "react"
+import { Comment } from "../components/Comment"
+
+const currentDate = new Date()
+const currentYear = currentDate.getFullYear()
+const currentMonth = currentDate.getMonth()
+const currentDay = currentDate.getDate()
 
 export function VidPlayer(props) {
+    const comments = []
+    const [commentContent, setCommentContent] = useState("")
+    const [commentList, setCommentList] = useState(comments)
+    function updateCommentContent(e){
+        setCommentContent(e.target.value)
+    }
+    function addComment(){
+        const newComment = {
+            commentId: commentList.length === 0 ? 1 : commentList[commentList.length - 1].commentId + 1,
+            content: commentContent,
+            user: "spkim0921",
+            date:`${currentYear}-${currentMonth}-${currentDay}`
+        }
+        const newComments = [...commentList, newComment]
+        setCommentList(newComments)
+        setCommentContent("")
+    }
     return (
         <main>
             <Video src={props.src} />
@@ -15,10 +39,13 @@ export function VidPlayer(props) {
                         <div className="comments">
                             <h2>Comments</h2>
                             <div>
-                                <input type="text" placeholder="Add a comment..." className="comment-input" />
-                                <button id="submit-button">Comment</button>
+                                <input type="text" placeholder="Add a comment..." className="comment-input" onChange={updateCommentContent} value={commentContent}/>
+                                <button id="submit-button" onClick={addComment}>Comment</button>
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        {commentList.map((comment)=> <Comment key={comment.commentId} content={comment.content} user={comment.user} date={comment.date}/>)}
                     </div>
                 </div>
                 <div id="suggested-menu">
