@@ -1,0 +1,36 @@
+
+
+.loginTitle{
+text-align: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: auto;
+}
+
+.input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: solid 1px white;
+    color: white;
+}
+
+.loginBtn{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(0, 140, 255);
+    color: white;
+    border: none;
+}
+
+.signup{
+    text-align: center;
+    color: white;
+    padding: 10px;
+}

@@ -62,12 +62,13 @@ footer {
 }
 
 .hamburger-menu:hover {
-  background-color: #282c34;
+  background-color: #68748b;
   border-radius: 15px;
 }
 
 .nav-link {
   display: block;
+  padding: 10px;
   line-height: 40px;
   text-align: center;
   color: white;
@@ -78,7 +79,7 @@ footer {
 }
 
 .nav-link:hover {
-  background-color: #282c34;
+  background-color: #68748b;
 }
 
 .side-link {
@@ -117,6 +118,20 @@ footer {
   border-radius: 10px;
   max-width: 95%;
   background-color: #333842;
+}
+
+.searchBarContainer{
+  padding: 2px;
+}
+
+.searchBar{
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  min-width: 300px;
+  color: white;
 }
 
 #video-title {

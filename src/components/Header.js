@@ -8,7 +8,7 @@ export function Header() {
     return (
         <header>
             <div id="top-bar">
-                <a href="https://codingcapy.github.io/capytech/html/index.html"><img src={capyness} alt="Capytech Icon" id="capytech-icon" /></a>
+                <a href="/capytech-react"><img src={capyness} alt="Capytech Icon" id="capytech-icon" /></a>
                 <button id="hamburger-menu" className="hamburger-menu" onClick={()=>{
                     setShowNav(!showNav)
                 }}>&#127828;</button>

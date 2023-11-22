@@ -16,6 +16,8 @@ import video8 from "./videos/video-1-2021-12-20-221603_1.mp4"
 import video9 from "./videos/video-2-2021-12-08-231135_0.mp4"
 import video10 from "./videos/video-3-2021-12-08-213139_1.mp4"
 import { streamArray } from './pages/Home';
+import LoginPage from './pages/Login';
+import SignupPage from './pages/Signup';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/capytech-react" element={<Home />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/video-1" element={<VidPlayer src={video1} path={streamArray.vid1.path} title={streamArray.vid1.title} appUser={streamArray.vid1.appUser} uploadDate={streamArray.vid1.uploadDate} />} />
           <Route path="/video-2" element={<VidPlayer src={video2} path={streamArray.vid2.path} title={streamArray.vid2.title} appUser={streamArray.vid2.appUser} uploadDate={streamArray.vid2.uploadDate} />} />
           <Route path="/video-3" element={<VidPlayer src={video3} path={streamArray.vid3.path} title={streamArray.vid3.title} appUser={streamArray.vid3.appUser} uploadDate={streamArray.vid3.uploadDate} />} />
