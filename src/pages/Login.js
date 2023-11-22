@@ -1,10 +1,14 @@
 
+import axios from "axios"
+import DOMAIN from "../services/endpoint"
 import styles from "./loginpage.module.css"
+import useAuthStore from "../store/AuthStore"
 
 export default function LoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        // await axios.post(`${DOMAIN}/api/user/login`, { username, password })
     }
 
     return (
@@ -18,7 +22,6 @@ export default function LoginPage() {
                 <button type="submit" className={styles.loginBtn}>Login</button>
                 <a href="/signup" className={styles.signup}>Sign Up</a>
             </form>
-            
         </div>
     )
 }

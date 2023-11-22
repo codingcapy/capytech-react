@@ -1,12 +1,21 @@
 
 import axios from "axios"
+import DOMAIN from "../services/endpoint";
+import { useNavigate } from "react-router-dom"
+import { useState } from "react";
 import styles from "./loginpage.module.css"
 
-export default function SignupPage(){
+export default function SignupPage() {
 
-    async function handleSubmit(e){
+    const navigate = useNavigate();
+    const [message, setMessage] = useState("")
+
+    async function handleSubmit(e) {
         e.preventDefault()
-        // await axios.post()
+        const username = e.target.username.value;
+        const password = e.target.password.value;
+        const newUser = { username, password }
+        // const res = await axios.post(`${DOMAIN}/api/users/`, newUser)
     }
 
     return (

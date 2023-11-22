@@ -5,12 +5,10 @@ import { streamArray } from "./Home"
 import { useState } from "react"
 import { Comment } from "../components/Comment"
 
-const currentDate = new Date()
-const currentYear = currentDate.getFullYear()
-const currentMonth = currentDate.getMonth()
-const currentDay = currentDate.getDate()
-
 export function VidPlayer(props) {
+
+    const [currentTime, setCurrentTime] = useState(new Date());
+
     const comments = []
     const [commentContent, setCommentContent] = useState("")
     const [commentList, setCommentList] = useState(comments)
@@ -22,7 +20,7 @@ export function VidPlayer(props) {
             commentId: commentList.length === 0 ? 1 : commentList[commentList.length - 1].commentId + 1,
             content: commentContent,
             user: "spkim0921",
-            date:`${currentYear}-${currentMonth}-${currentDay}`
+            date: currentTime.toLocaleString()
         }
         const newComments = [...commentList, newComment]
         setCommentList(newComments)
