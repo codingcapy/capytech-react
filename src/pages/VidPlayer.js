@@ -4,6 +4,9 @@ import { Thumbnail } from "../components/Thumbnail"
 import { streamArray } from "./Home"
 import { useState } from "react"
 import { Comment } from "../components/Comment"
+import styles from "./vidplayer.module.css"
+import { PiThumbsUpDuotone } from "react-icons/pi";
+import { PiThumbsDownLight } from "react-icons/pi";
 
 export function VidPlayer(props) {
 
@@ -12,10 +15,10 @@ export function VidPlayer(props) {
     const comments = []
     const [commentContent, setCommentContent] = useState("")
     const [commentList, setCommentList] = useState(comments)
-    function updateCommentContent(e){
+    function updateCommentContent(e) {
         setCommentContent(e.target.value)
     }
-    function addComment(){
+    function addComment() {
         const newComment = {
             commentId: commentList.length === 0 ? 1 : commentList[commentList.length - 1].commentId + 1,
             content: commentContent,
@@ -27,23 +30,26 @@ export function VidPlayer(props) {
         setCommentContent("")
     }
     return (
-        <main>
-            <Video src={props.src} />
+        <div className={styles.vidPlayer}>
+            <Video src={props.src} className={styles.vidPlayer} />
             <div id="vidplayer-ui">
                 <div id="vidplayer-ui2">
                     <h1 id="video-title">{props.title}</h1>
-                    <h2 id="user-id">{props.appUser}</h2>
+                    <div className={styles.sub}>
+                        <h2 id="user-id">{props.appUser} </h2>
+                        <div className={styles.likes}><div className={styles.like}><PiThumbsUpDuotone size={25} /></div> 0 | <div className={styles.like}><PiThumbsDownLight size={25} /></div></div>
+                    </div>
                     <div id="comments-section">
                         <div className="comments">
                             <h2>Comments</h2>
                             <div>
-                                <input type="text" placeholder="Add a comment..." className="comment-input" onChange={updateCommentContent} value={commentContent}/>
+                                <input type="text" placeholder="Add a comment..." className="comment-input" onChange={updateCommentContent} value={commentContent} />
                                 <button id="submit-button" onClick={addComment}>Comment</button>
                             </div>
                         </div>
                     </div>
                     <div>
-                        {commentList.map((comment)=> <Comment key={comment.commentId} content={comment.content} user={comment.user} date={comment.date}/>)}
+                        {commentList.map((comment) => <Comment key={comment.commentId} content={comment.content} user={comment.user} date={comment.date} />)}
                     </div>
                 </div>
                 <div id="suggested-menu">
@@ -57,6 +63,6 @@ export function VidPlayer(props) {
                     <Thumbnail src={streamArray.vid5.imgSrc} path={streamArray.vid5.path} title={streamArray.vid5.title} appUser={streamArray.vid5.appUser} uploadDate={streamArray.vid5.uploadDate} />
                 </div>
             </div>
-        </main>
+        </div>
     )
 }

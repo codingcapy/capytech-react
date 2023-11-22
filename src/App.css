@@ -94,7 +94,9 @@ footer {
 }
 
 .video {
+  margin: auto;
   max-width: 100%;
+  align-items: center;
 }
 
 .thumbnail {
@@ -251,6 +253,7 @@ footer {
 
   #vidplayer-ui {
     display: flex;
+    width: 78%;
   }
 
   #vidplayer-ui2 {

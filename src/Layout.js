@@ -12,7 +12,7 @@ import { Footer } from "./components/Footer";
 
 export default function Layout() {
     return (
-        <div >
+        <div id='wrapper'>
             <Header />
             <main>
                 <Outlet />
