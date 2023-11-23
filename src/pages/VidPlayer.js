@@ -84,6 +84,7 @@ export function VidPlayer() {
     }
 
     async function clickLike() {
+        if (!user) return
         if (!data.likes.find((like) => like.voterId === userId)) {
             const value = 1
             const voterId = userId;
@@ -109,6 +110,7 @@ export function VidPlayer() {
     }
 
     async function neutralVote() {
+        if (!user) return
         const value = 0
         const voterId = userId;
         const videoId = data.video.videoId;
