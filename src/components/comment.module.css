@@ -1,0 +1,31 @@
+
+
+.commentContainer{
+    margin: 10px;
+}
+
+.title{
+    margin: 0;
+    padding: 0;
+}
+
+.content{
+    margin: 0;
+    padding: 0;
+}
+
+.likeBtn{
+    padding: 10px;
+}
+
+.actions{
+    display: flex;
+}
+
+.ownerActions{
+    padding-right: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+}

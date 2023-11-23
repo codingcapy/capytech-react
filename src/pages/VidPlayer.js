@@ -8,7 +8,9 @@ import { Video } from "../components/Video"
 import { useState } from "react"
 import { Comment } from "../components/Comment"
 import { PiThumbsUpDuotone } from "react-icons/pi";
+import { PiThumbsUpFill } from "react-icons/pi";
 import { PiThumbsDownLight } from "react-icons/pi";
+import { PiThumbsDownFill } from "react-icons/pi";
 import { videoArray } from "./Home"
 import styles from "./vidplayer.module.css"
 import video1 from "../videos/video-2021-12-03-22-53.mp4"
@@ -93,12 +95,12 @@ export function VidPlayer() {
                     <p>Upload Date: {data.video.uploadDate}</p>
                     <div id="comments-section">
                     {!user && <p>Please log in to add comments!</p>}
-                        {user && <div className="comments">
+                        {user && <div>
                             <h2>Comments</h2>
                             <div>
                                 <form onSubmit={handleCommentSubmit}>
-                                    <input type="text" name="content" id="content" placeholder="Add a comment..." className="comment-input" />
-                                    <button type="submit" id="submit-button" >Comment</button>
+                                    <input type="text" name="content" id="content" placeholder="Add a comment..." required className="comment-input" />
+                                    <button type="submit" id="submit-button" className={styles.commentBtn}>Comment</button>
                                 </form>
                             </div>
                         </div>}

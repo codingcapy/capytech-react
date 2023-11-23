@@ -25,3 +25,11 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.commentBtn{
+    background-color: grey;
+    color: white;
+    right: 20px;
+    border: none;
+    border-radius: 10px;
+}
