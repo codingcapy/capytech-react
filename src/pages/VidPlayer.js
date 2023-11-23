@@ -31,6 +31,7 @@ export function VidPlayer() {
     const userId = getUserIdFromToken();
     const navigate = useNavigate();
     const [currentTime] = useState(new Date());
+    const [disliked, setDisliked] = useState(false)
 
     const formattedDate = currentTime.toLocaleString();
 
@@ -82,6 +83,44 @@ export function VidPlayer() {
         }
     }
 
+    async function clickLike() {
+        if (!data.likes.find((like) => like.voterId === userId)) {
+            const value = 1
+            const voterId = userId;
+            const videoId = data.video.videoId;
+            const like = { value, videoId, voterId };
+            setDisliked(false)
+            const res = await axios.post(`${DOMAIN}/api/likes`, like);
+            if (res?.data.success) {
+                navigate(`/capytech-react/videos/${data.video.videoId}`);
+            }
+        }
+        else if (data.likes.filter((like) => like.voterId === parseInt(userId))[0].value === 0) {
+            const value = 1
+            const voterId = userId;
+            const videoId = data.video.videoId;
+            const likeId = data.likes.filter((like) => like.voterId === parseInt(userId))[0].likeId;
+            const updatedLike = { value, videoId, voterId, likeId }
+            const res = await axios.post(`${DOMAIN}/api/likes/${likeId}`, updatedLike)
+            if (res?.data.success) {
+                navigate(`/capytech-react/videos/${data.video.videoId}`);
+            }
+        }
+    }
+
+    async function neutralVote() {
+        const value = 0
+        const voterId = userId;
+        const videoId = data.video.videoId;
+        const likeId = data.likes.filter((like) => like.voterId === parseInt(userId))[0].likeId;
+        const updatedLike = { value, videoId, voterId, likeId }
+        setDisliked(!disliked)
+        const res = await axios.post(`${DOMAIN}/api/likes/${likeId}`, updatedLike)
+        if (res?.data.success) {
+            navigate(`/capytech-react/videos/${data.video.videoId}`);
+        }
+    }
+
     return (
         <div className={styles.vidPlayer}>
             <Video src={videoSrc} className={styles.vidPlayer} />
@@ -90,11 +129,20 @@ export function VidPlayer() {
                     <h1 id="video-title">{data.video.title}</h1>
                     <div className={styles.sub}>
                         <h2 id="user-id">{data.video.creator} </h2>
-                        <div className={styles.likes}><div className={styles.like}><PiThumbsUpDuotone size={25} /></div> 0 | <div className={styles.like}><PiThumbsDownLight size={25} /></div></div>
+                        <div className={styles.likes}>
+                            {data.likes.find((like) => like.voterId === userId) !== undefined && data.likes.find((like) => like.voterId === userId).value > 0
+                                ? <div className={styles.like} onClick={neutralVote}><PiThumbsUpFill size={25} /></div>
+                                :
+                                <div className={styles.like} onClick={clickLike}><PiThumbsUpDuotone size={25} /></div>}
+                            {data.likes.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)} |
+                            {disliked
+                                ? <div className={styles.like} onClick={neutralVote}><PiThumbsDownFill size={25} /></div>
+                                : <div className={styles.like} onClick={neutralVote}><PiThumbsDownLight size={25} /></div>}
+                        </div>
                     </div>
                     <p>Upload Date: {data.video.uploadDate}</p>
                     <div id="comments-section">
-                    {!user && <p>Please log in to add comments!</p>}
+                        {!user && <p>Please log in to add comments!</p>}
                         {user && <div>
                             <h2>Comments</h2>
                             <div>

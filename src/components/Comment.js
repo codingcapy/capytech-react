@@ -7,7 +7,7 @@ import styles from "./comment.module.css"
 
 export function Comment(props) {
 
-    const { logoutService, user } = useAuthStore((state) => state)
+    const { user } = useAuthStore((state) => state)
     const userId = getUserIdFromToken();
 
     return (
