@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/capytech-react/static/css/main.0b91956f.css",
-    "main.js": "/capytech-react/static/js/main.d60b529a.js",
+    "main.js": "/capytech-react/static/js/main.4201da1f.js",
     "static/media/video-2-2021-12-08-231135_0.mp4": "/capytech-react/static/media/video-2-2021-12-08-231135_0.c4e4162fc814cbc68360.mp4",
     "static/media/video-2021-12-04-23-28-1.mp4": "/capytech-react/static/media/video-2021-12-04-23-28-1.8bcbe8e04beead862a65.mp4",
     "static/media/video-2021-12-05-00-12.mp4": "/capytech-react/static/media/video-2021-12-05-00-12.0cc65a418794a77a6237.mp4",
@@ -25,10 +25,10 @@
     "static/media/capyness.png": "/capytech-react/static/media/capyness.4fe541828fbf73792b88.png",
     "index.html": "/capytech-react/index.html",
     "main.0b91956f.css.map": "/capytech-react/static/css/main.0b91956f.css.map",
-    "main.d60b529a.js.map": "/capytech-react/static/js/main.d60b529a.js.map"
+    "main.4201da1f.js.map": "/capytech-react/static/js/main.4201da1f.js.map"
   },
   "entrypoints": [
     "static/css/main.0b91956f.css",
-    "static/js/main.d60b529a.js"
+    "static/js/main.4201da1f.js"
   ]
 }
