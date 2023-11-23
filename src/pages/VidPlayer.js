@@ -1,14 +1,16 @@
 
 import axios from "axios"
 import DOMAIN from "../services/endpoint"
+import useAuthStore from "../store/AuthStore";
+import { getUserIdFromToken } from '../services/jwt.service';
+import { Link, useLoaderData, useNavigate } from "react-router-dom"
 import { Video } from "../components/Video"
 import { useState } from "react"
 import { Comment } from "../components/Comment"
-import styles from "./vidplayer.module.css"
 import { PiThumbsUpDuotone } from "react-icons/pi";
 import { PiThumbsDownLight } from "react-icons/pi";
-import { Link, useLoaderData } from "react-router-dom"
 import { videoArray } from "./Home"
+import styles from "./vidplayer.module.css"
 import video1 from "../videos/video-2021-12-03-22-53.mp4"
 import video2 from "../videos/video-2021-12-03-23-13.mp4"
 import video3 from "../videos/video-2021-12-04-23-28-1.mp4"
@@ -23,40 +25,44 @@ import video10 from "../videos/video-3-2021-12-08-213139_1.mp4"
 export function VidPlayer() {
 
     const data = useLoaderData()
+    const { user } = useAuthStore((state) => state);
+    const userId = getUserIdFromToken();
+    const navigate = useNavigate();
+    const [currentTime] = useState(new Date());
+
+    const formattedDate = currentTime.toLocaleString();
 
     let videoSrc;
-    if (data.video.videoId === 1){
+    if (data.video.videoId === 1) {
         videoSrc = video1
     }
-    else if (data.video.videoId === 2){
+    else if (data.video.videoId === 2) {
         videoSrc = video2
     }
-    else if (data.video.videoId === 3){
+    else if (data.video.videoId === 3) {
         videoSrc = video3
     }
-    else if (data.video.videoId === 4){
+    else if (data.video.videoId === 4) {
         videoSrc = video4
     }
-    else if (data.video.videoId === 5){
+    else if (data.video.videoId === 5) {
         videoSrc = video5
     }
-    else if (data.video.videoId === 6){
+    else if (data.video.videoId === 6) {
         videoSrc = video6
     }
-    else if (data.video.videoId === 7){
+    else if (data.video.videoId === 7) {
         videoSrc = video7
     }
-    else if (data.video.videoId === 8){
+    else if (data.video.videoId === 8) {
         videoSrc = video8
     }
-    else if (data.video.videoId === 9){
+    else if (data.video.videoId === 9) {
         videoSrc = video9
     }
-    else if (data.video.videoId === 10){
+    else if (data.video.videoId === 10) {
         videoSrc = video10
     }
-
-    const [currentTime] = useState(new Date());
 
     const comments = []
     const [commentContent, setCommentContent] = useState("")
@@ -64,17 +70,23 @@ export function VidPlayer() {
     function updateCommentContent(e) {
         setCommentContent(e.target.value)
     }
-    function addComment() {
-        const newComment = {
-            commentId: commentList.length === 0 ? 1 : commentList[commentList.length - 1].commentId + 1,
-            content: commentContent,
-            user: "spkim0921",
-            date: currentTime.toLocaleString()
+
+    async function handleCommentSubmit(e) {
+        e.preventDefault()
+        const content = e.target.content.value;
+        const videoId = data.video.videoId
+        const userId = getUserIdFromToken();
+        const date = formattedDate
+        const edited = false;
+        const deleted = false;
+        const newComment = { content, videoId, userId, date, edited, deleted };
+        const res = await axios.post(`${DOMAIN}/api/comments`, newComment);
+        if (res?.data.success) {
+            e.target.content.value = "";
+            navigate(`/capytech-react/videos/${data.video.videoId}`);
         }
-        const newComments = [...commentList, newComment]
-        setCommentList(newComments)
-        setCommentContent("")
     }
+
     return (
         <div className={styles.vidPlayer}>
             <Video src={videoSrc} className={styles.vidPlayer} />
@@ -87,20 +99,23 @@ export function VidPlayer() {
                     </div>
                     <p>Upload Date: {data.video.uploadDate}</p>
                     <div id="comments-section">
-                        <div className="comments">
+                    {!user && <p>Please log in to add comments!</p>}
+                        {user && <div className="comments">
                             <h2>Comments</h2>
                             <div>
-                                <input type="text" placeholder="Add a comment..." className="comment-input" onChange={updateCommentContent} value={commentContent} />
-                                <button id="submit-button" onClick={addComment}>Comment</button>
+                                <form onSubmit={handleCommentSubmit}>
+                                    <input type="text" name="content" id="content" placeholder="Add a comment..." className="comment-input" onChange={updateCommentContent} value={commentContent} />
+                                    <button type="submit" id="submit-button" >Comment</button>
+                                </form>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                     <div>
-                        {commentList.map((comment) => <Comment key={comment.commentId} content={comment.content} user={comment.user} date={comment.date} />)}
+                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} user={comment.userName} date={comment._doc.date} />)}
                     </div>
                 </div>
                 <div id="suggested-menu">
-                {data.videos.map((video) =>
+                    {data.videos.map((video) =>
                         <div key={video.videoId} className="thumbnail-container">
                             <Link to={`/capytech-react/videos/${video.videoId}`} style={{ textDecoration: 'none' }}>
                                 <img src={videoArray[video.videoId - 1]} className="thumbnail" alt="video thumbnail" />
