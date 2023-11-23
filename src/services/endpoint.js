@@ -1,5 +1,5 @@
 
 
-const DOMAIN = "https://capytvserver.onrender.com/"
+const DOMAIN = "https://capytvserver.onrender.com"
 
 export default DOMAIN;
