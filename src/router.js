@@ -9,7 +9,7 @@ description: router js for CapyTV
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import useAuthStore from "./store/AuthStore";
 import Layout from "./Layout";
-import { Home } from './pages/Home';
+import { Home, pageLoader } from './pages/Home';
 import { VidPlayer } from './pages/VidPlayer';
 import video1 from "./videos/video-2021-12-03-22-53.mp4"
 import video2 from "./videos/video-2021-12-03-23-13.mp4"
@@ -32,7 +32,7 @@ export function Router() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route element={<Layout />}>
-                <Route path="/capytech-react" element={<Home />} />
+                <Route path="/capytech-react" element={<Home />} loader={pageLoader} />
                 <Route path="/capytech-react/login" element={<LoginPage />} />
                 <Route path="/capytech-react/signup" element={<SignupPage />} />
                 <Route path="/capytech-react/videos/1" element={<VidPlayer src={video1} path={streamArray.vid1.path} title={streamArray.vid1.title} appUser={streamArray.vid1.appUser} uploadDate={streamArray.vid1.uploadDate} />} />

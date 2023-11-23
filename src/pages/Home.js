@@ -1,5 +1,7 @@
 
-
+import axios from "axios"
+import DOMAIN from "../services/endpoint"
+import { Link } from "react-router-dom"
 import { Thumbnail } from "../components/Thumbnail"
 import { SideMenu } from "../components/SideMenu"
 import vid1Thumb from "../image/video1.jpg"
@@ -12,6 +14,9 @@ import vid7Thumb from "../image/video7.jpg"
 import vid8Thumb from "../image/video8.jpg"
 import vid9Thumb from "../image/video9.jpg"
 import vid10Thumb from "../image/video10.jpg"
+import { useLoaderData } from "react-router-dom"
+
+export let videoArray = [vid1Thumb, vid2Thumb, vid3Thumb, vid4Thumb, vid5Thumb, vid6Thumb, vid7Thumb, vid8Thumb, vid9Thumb, vid10Thumb]
 
 export let streamArray = {
     vid1: { imgSrc: vid1Thumb, path: "/capytech-react/videos/1", title: "Wild Rift Highlights 1", appUser: "spkim0921", uploadDate: "2021-12-03" },
@@ -28,6 +33,8 @@ export let streamArray = {
 
 export function Home() {
 
+    const videos = useLoaderData()
+
     return (
         <main>
             <h1 className="main-title" >Capytech React Project</h1>
@@ -35,18 +42,23 @@ export function Home() {
             <div id="main-container">
                 <SideMenu />
                 <div id="videos-dashboard">
-                    <Thumbnail src={streamArray.vid8.imgSrc} path={streamArray.vid8.path} title={streamArray.vid8.title} appUser={streamArray.vid8.appUser} uploadDate={streamArray.vid8.uploadDate} videoId={8}/>
-                    <Thumbnail src={streamArray.vid9.imgSrc} path={streamArray.vid9.path} title={streamArray.vid9.title} appUser={streamArray.vid9.appUser} uploadDate={streamArray.vid9.uploadDate} videoId={9}/>
-                    <Thumbnail src={streamArray.vid10.imgSrc} path={streamArray.vid10.path} title={streamArray.vid10.title} appUser={streamArray.vid10.appUser} uploadDate={streamArray.vid10.uploadDate} />
-                    <Thumbnail src={streamArray.vid1.imgSrc} path={streamArray.vid1.path} title={streamArray.vid1.title} appUser={streamArray.vid1.appUser} uploadDate={streamArray.vid1.uploadDate} videoId={1} />
-                    <Thumbnail src={streamArray.vid2.imgSrc} path={streamArray.vid2.path} title={streamArray.vid2.title} appUser={streamArray.vid2.appUser} uploadDate={streamArray.vid2.uploadDate} videoId={2}/>
-                    <Thumbnail src={streamArray.vid3.imgSrc} path={streamArray.vid3.path} title={streamArray.vid3.title} appUser={streamArray.vid3.appUser} uploadDate={streamArray.vid3.uploadDate} videoId={3}/>
-                    <Thumbnail src={streamArray.vid4.imgSrc} path={streamArray.vid4.path} title={streamArray.vid4.title} appUser={streamArray.vid4.appUser} uploadDate={streamArray.vid4.uploadDate} videoId={4}/>
-                    <Thumbnail src={streamArray.vid5.imgSrc} path={streamArray.vid5.path} title={streamArray.vid5.title} appUser={streamArray.vid5.appUser} uploadDate={streamArray.vid5.uploadDate} videoId={5}/>
-                    <Thumbnail src={streamArray.vid6.imgSrc} path={streamArray.vid6.path} title={streamArray.vid6.title} appUser={streamArray.vid6.appUser} uploadDate={streamArray.vid6.uploadDate} videoId={6}/>
-                    <Thumbnail src={streamArray.vid7.imgSrc} path={streamArray.vid7.path} title={streamArray.vid7.title} appUser={streamArray.vid7.appUser} uploadDate={streamArray.vid7.uploadDate} videoId={7}/>
+                    {videos.map((video) =>
+                        <div className="thumbnail-container">
+                            <Link to={`/capytech-react/videos/${video.videoId}`} style={{ textDecoration: 'none' }}>
+                                <img src={videoArray[video.videoId - 1]} className="thumbnail" />
+                                <h2 className="video-meta">{video.title}</h2>
+                                <p className="video-meta">{video.creator}</p>
+                                <p className="video-meta">{video.uploadDate}</p>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </div>
         </main>
     )
+}
+
+export async function pageLoader() {
+    const res = await axios.get(`${DOMAIN}/api/videos`)
+    return res.data
 }
