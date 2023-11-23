@@ -35,16 +35,16 @@ export function Home() {
             <div id="main-container">
                 <SideMenu />
                 <div id="videos-dashboard">
-                    <Thumbnail src={streamArray.vid8.imgSrc} path={streamArray.vid8.path} title={streamArray.vid8.title} appUser={streamArray.vid8.appUser} uploadDate={streamArray.vid8.uploadDate} />
-                    <Thumbnail src={streamArray.vid9.imgSrc} path={streamArray.vid9.path} title={streamArray.vid9.title} appUser={streamArray.vid9.appUser} uploadDate={streamArray.vid9.uploadDate} />
+                    <Thumbnail src={streamArray.vid8.imgSrc} path={streamArray.vid8.path} title={streamArray.vid8.title} appUser={streamArray.vid8.appUser} uploadDate={streamArray.vid8.uploadDate} videoId={8}/>
+                    <Thumbnail src={streamArray.vid9.imgSrc} path={streamArray.vid9.path} title={streamArray.vid9.title} appUser={streamArray.vid9.appUser} uploadDate={streamArray.vid9.uploadDate} videoId={9}/>
                     <Thumbnail src={streamArray.vid10.imgSrc} path={streamArray.vid10.path} title={streamArray.vid10.title} appUser={streamArray.vid10.appUser} uploadDate={streamArray.vid10.uploadDate} />
-                    <Thumbnail src={streamArray.vid1.imgSrc} path={streamArray.vid1.path} title={streamArray.vid1.title} appUser={streamArray.vid1.appUser} uploadDate={streamArray.vid1.uploadDate} />
-                    <Thumbnail src={streamArray.vid2.imgSrc} path={streamArray.vid2.path} title={streamArray.vid2.title} appUser={streamArray.vid2.appUser} uploadDate={streamArray.vid2.uploadDate} />
-                    <Thumbnail src={streamArray.vid3.imgSrc} path={streamArray.vid3.path} title={streamArray.vid3.title} appUser={streamArray.vid3.appUser} uploadDate={streamArray.vid3.uploadDate} />
-                    <Thumbnail src={streamArray.vid4.imgSrc} path={streamArray.vid4.path} title={streamArray.vid4.title} appUser={streamArray.vid4.appUser} uploadDate={streamArray.vid4.uploadDate} />
-                    <Thumbnail src={streamArray.vid5.imgSrc} path={streamArray.vid5.path} title={streamArray.vid5.title} appUser={streamArray.vid5.appUser} uploadDate={streamArray.vid5.uploadDate} />
-                    <Thumbnail src={streamArray.vid6.imgSrc} path={streamArray.vid6.path} title={streamArray.vid6.title} appUser={streamArray.vid6.appUser} uploadDate={streamArray.vid6.uploadDate} />
-                    <Thumbnail src={streamArray.vid7.imgSrc} path={streamArray.vid7.path} title={streamArray.vid7.title} appUser={streamArray.vid7.appUser} uploadDate={streamArray.vid7.uploadDate} />
+                    <Thumbnail src={streamArray.vid1.imgSrc} path={streamArray.vid1.path} title={streamArray.vid1.title} appUser={streamArray.vid1.appUser} uploadDate={streamArray.vid1.uploadDate} videoId={1} />
+                    <Thumbnail src={streamArray.vid2.imgSrc} path={streamArray.vid2.path} title={streamArray.vid2.title} appUser={streamArray.vid2.appUser} uploadDate={streamArray.vid2.uploadDate} videoId={2}/>
+                    <Thumbnail src={streamArray.vid3.imgSrc} path={streamArray.vid3.path} title={streamArray.vid3.title} appUser={streamArray.vid3.appUser} uploadDate={streamArray.vid3.uploadDate} videoId={3}/>
+                    <Thumbnail src={streamArray.vid4.imgSrc} path={streamArray.vid4.path} title={streamArray.vid4.title} appUser={streamArray.vid4.appUser} uploadDate={streamArray.vid4.uploadDate} videoId={4}/>
+                    <Thumbnail src={streamArray.vid5.imgSrc} path={streamArray.vid5.path} title={streamArray.vid5.title} appUser={streamArray.vid5.appUser} uploadDate={streamArray.vid5.uploadDate} videoId={5}/>
+                    <Thumbnail src={streamArray.vid6.imgSrc} path={streamArray.vid6.path} title={streamArray.vid6.title} appUser={streamArray.vid6.appUser} uploadDate={streamArray.vid6.uploadDate} videoId={6}/>
+                    <Thumbnail src={streamArray.vid7.imgSrc} path={streamArray.vid7.path} title={streamArray.vid7.title} appUser={streamArray.vid7.appUser} uploadDate={streamArray.vid7.uploadDate} videoId={7}/>
                 </div>
             </div>
         </main>

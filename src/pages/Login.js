@@ -1,27 +1,45 @@
 
-import axios from "axios"
-import DOMAIN from "../services/endpoint"
-import styles from "./loginpage.module.css"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import useAuthStore from "../store/AuthStore"
+import styles from "./loginpage.module.css"
 
 export default function LoginPage() {
 
-    async function handleSubmit(e) {
+    const navigate = useNavigate()
+    const { loginService, authLoading, user } = useAuthStore((state) => state)
+    const [message, setMessage] = useState("")
+
+    useEffect(() => {
+        if (!!user) {
+            navigate("/capytech-react")
+        }
+    }, [user])
+
+    async function onLogin(e) {
         e.preventDefault()
-        // await axios.post(`${DOMAIN}/api/user/login`, { username, password })
+        let username = e.target.username?.value;
+        let password = e.target.password?.value
+        if (!username || !password) return
+        loginService(username, password)
+        if (!user) {
+            setMessage("Invalid login credentials");
+        }
     }
 
     return (
         <div>
             <h2 className={styles.loginTitle}>Login</h2>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <label htmlFor="username"></label>
-                <input type="text" name="username" id="password" placeholder="Username" required className={styles.input} />
-                <label htmlFor="password"></label>
+            <form onSubmit={onLogin} className={styles.form}>
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username" required className={styles.input} />
+                <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Password" required className={styles.input} />
                 <button type="submit" className={styles.loginBtn}>Login</button>
+                {authLoading ? <h2>Loading...</h2> : null}
                 <a href="/signup" className={styles.signup}>Sign Up</a>
             </form>
+            <p className={styles.loginTitle}>{message}</p>
         </div>
     )
 }

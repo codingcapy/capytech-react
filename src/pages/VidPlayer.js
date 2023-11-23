@@ -1,4 +1,6 @@
 
+import axios from "axios"
+import DOMAIN from "../services/endpoint"
 import { Video } from "../components/Video"
 import { Thumbnail } from "../components/Thumbnail"
 import { streamArray } from "./Home"
@@ -65,4 +67,9 @@ export function VidPlayer(props) {
             </div>
         </div>
     )
+}
+
+export async function vidPlayerLoader({ params }) {
+    const res = await axios.get(`${DOMAIN}/api/videos/${params.videoId}`)
+    return res.data
 }
