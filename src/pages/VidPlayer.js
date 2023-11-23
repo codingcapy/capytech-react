@@ -7,10 +7,7 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom"
 import { Video } from "../components/Video"
 import { useState } from "react"
 import { Comment } from "../components/Comment"
-import { PiThumbsUpDuotone } from "react-icons/pi";
-import { PiThumbsUpFill } from "react-icons/pi";
-import { PiThumbsDownLight } from "react-icons/pi";
-import { PiThumbsDownFill } from "react-icons/pi";
+import { PiThumbsUpDuotone, PiThumbsUpFill, PiThumbsDownLight, PiThumbsDownFill } from "react-icons/pi";
 import { videoArray } from "./Home"
 import styles from "./vidplayer.module.css"
 import video1 from "../videos/video-2021-12-03-22-53.mp4"
@@ -156,7 +153,7 @@ export function VidPlayer() {
                         </div>}
                     </div>
                     <div>
-                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} userId={comment._doc.userId} />)}
+                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} videoId={comment._doc.videoId} userId={comment._doc.userId} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} edited={comment._doc.edited} deleted={comment._doc.deleted}/>)}
                     </div>
                 </div>
                 <div id="suggested-menu">

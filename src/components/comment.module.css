@@ -29,3 +29,19 @@
     color: white;
     font-weight: bold;
 }
+
+.textarea{
+    border: solid 1px white;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.submitBtn{
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
