@@ -99,6 +99,7 @@ export function VidPlayer() {
             const videoId = data.video.videoId;
             const likeId = data.likes.filter((like) => like.voterId === parseInt(userId))[0].likeId;
             const updatedLike = { value, videoId, voterId, likeId }
+            setDisliked(false)
             const res = await axios.post(`${DOMAIN}/api/likes/${likeId}`, updatedLike)
             if (res?.data.success) {
                 navigate(`/capytech-react/videos/${data.video.videoId}`);
@@ -153,7 +154,7 @@ export function VidPlayer() {
                         </div>}
                     </div>
                     <div>
-                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} videoId={comment._doc.videoId} userId={comment._doc.userId} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} edited={comment._doc.edited} deleted={comment._doc.deleted}/>)}
+                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} videoId={comment._doc.videoId} userId={comment._doc.userId} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} edited={comment._doc.edited} deleted={comment._doc.deleted} commentLikes={data.commentLikes.filter((commentLike) => commentLike.commentId === comment._doc.commentId)} />)}
                     </div>
                 </div>
                 <div id="suggested-menu">

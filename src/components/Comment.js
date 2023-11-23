@@ -17,6 +17,7 @@ export function Comment(props) {
     const navigate = useNavigate();
     const [replyMode, setReplyMode] = useState(false)
     const [currentTime] = useState(new Date());
+    const [disliked, setDisliked] = useState(false)
     const formattedDate = currentTime.toLocaleString();
 
     function toggleCommentEditMode() {
@@ -59,6 +60,52 @@ export function Comment(props) {
         }
     }
 
+    async function clickUpvote() {
+        if (!user) return;
+        if (userId === props.userId) return
+        if (!props.commentLikes.find((commentLike) => commentLike.voterId === userId)) {
+            const value = 1
+            const voterId = userId;
+            const commentId = props.commentId
+            const videoId = props.videoId;
+            const vote = { value, videoId, commentId, voterId, };
+            setDisliked(false)
+            const res = await axios.post(`${DOMAIN}/api/commentlikes`, vote);
+            if (res?.data.success) {
+                navigate(`/capytech-react/videos/${videoId}`);
+            }
+        }
+        else if (props.commentLikes.filter((commentLike) => commentLike.voterId === parseInt(userId))[0].value === 0) {
+            const value = 1
+            const voterId = userId;
+            const commentId = props.commentId
+            const videoId = props.videoId;
+            const commentLikeId = props.commentLikes.filter((commentLike) => commentLike.voterId === parseInt(userId))[0].commentLikeId;
+            const updatedLike = { value, videoId, commentId, voterId, commentLikeId }
+            setDisliked(false)
+            const res = await axios.post(`${DOMAIN}/api/commentlikes/${commentLikeId}`, updatedLike)
+            if (res?.data.success) {
+                navigate(`/capytech-react/videos/${videoId}`);
+            }
+        }
+    }
+
+    async function neutralVote() {
+        if (!user) return;
+        if (userId === props.userId) return
+        const value = 0
+        const voterId = userId;
+        const videoId = props.videoId;
+        const commentId = props.commentId
+        const commentLikeId = props.commentLikes.filter((commentLike) => commentLike.voterId === parseInt(userId))[0].commentLikeId;
+        const updatedLike = { value, videoId, commentId, voterId, commentLikeId }
+        setDisliked(!disliked)
+        const res = await axios.post(`${DOMAIN}/api/commentlikes/${commentLikeId}`, updatedLike)
+        if (res?.data.success) {
+            navigate(`/capytech-react/videos/${videoId}`);
+        }
+    }
+
     return (
         <div className={styles.commentContainer}>
             <p className={styles.title}><strong>@{props.user}</strong> {props.date} {props.edited && "(edited)"}</p>
@@ -71,12 +118,23 @@ export function Comment(props) {
                 : <div>
                     <p className={styles.content}>{props.content}</p>
                     <div className={styles.actions}>
-                        <div className={styles.likeBtn}>
-                            {user && <PiThumbsUpDuotone size={25} />}
-                        </div>
-                        <div className={styles.likeBtn}>
-                            {user && <PiThumbsDownLight size={25} />}
-                        </div>
+                        {props.commentLikes.find((commentLike) => commentLike.voterId === userId) !== undefined && props.commentLikes.find((commentLike) => commentLike.voterId === userId).value > 0
+                            ? <div className={styles.likeBtn} onClick={neutralVote}>
+                                {<PiThumbsUpFill size={25} />}
+                            </div>
+                            :
+                            <div className={styles.likeBtn} onClick={clickUpvote}>
+                                {<PiThumbsUpDuotone size={25} />}
+                            </div>
+                        }
+                        {props.commentLikes.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
+                        {disliked
+                            ? <div className={styles.likeBtn}>
+                                {<PiThumbsDownFill size={25} onClick={neutralVote}/>}
+                            </div>
+                            : <div className={styles.likeBtn}>
+                                {<PiThumbsDownLight size={25} onClick={neutralVote}/>}
+                            </div>}
                         {props.deleted ? "" : userId === props.userId && <button onClick={toggleCommentEditMode} className={styles.ownerActions}>Edit</button>}
                         {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} onClick={handleDeleteComment}>Delete</button>}
                     </div>
