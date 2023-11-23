@@ -106,7 +106,7 @@ export function VidPlayer() {
                         </div>}
                     </div>
                     <div>
-                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} user={comment.userName} date={comment._doc.date} />)}
+                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} userId={comment._doc.userId} />)}
                     </div>
                 </div>
                 <div id="suggested-menu">

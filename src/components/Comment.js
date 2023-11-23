@@ -21,8 +21,8 @@ export function Comment(props) {
                 <div className={styles.likeBtn}>
                     {user && <PiThumbsDownLight size={25} />}
                 </div>
-                {user && <button className={styles.ownerActions}>Edit</button>}
-                {user && <button className={styles.ownerActions}>Delete</button>}
+                {userId === props.userId && <button className={styles.ownerActions}>Edit</button>}
+                {userId === props.userId && <button className={styles.ownerActions}>Delete</button>}
             </div>
         </div>
     )
