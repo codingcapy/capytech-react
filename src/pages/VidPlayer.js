@@ -20,7 +20,7 @@ import video8 from "../videos/video-1-2021-12-20-221603_1.mp4"
 import video9 from "../videos/video-2-2021-12-08-231135_0.mp4"
 import video10 from "../videos/video-3-2021-12-08-213139_1.mp4"
 
-export function VidPlayer(props) {
+export function VidPlayer() {
 
     const data = useLoaderData()
 
@@ -85,6 +85,7 @@ export function VidPlayer(props) {
                         <h2 id="user-id">{data.video.creator} </h2>
                         <div className={styles.likes}><div className={styles.like}><PiThumbsUpDuotone size={25} /></div> 0 | <div className={styles.like}><PiThumbsDownLight size={25} /></div></div>
                     </div>
+                    <p>Upload Date: {data.video.uploadDate}</p>
                     <div id="comments-section">
                         <div className="comments">
                             <h2>Comments</h2>
