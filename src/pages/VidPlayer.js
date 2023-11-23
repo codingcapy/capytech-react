@@ -64,13 +64,6 @@ export function VidPlayer() {
         videoSrc = video10
     }
 
-    const comments = []
-    const [commentContent, setCommentContent] = useState("")
-    const [commentList, setCommentList] = useState(comments)
-    function updateCommentContent(e) {
-        setCommentContent(e.target.value)
-    }
-
     async function handleCommentSubmit(e) {
         e.preventDefault()
         const content = e.target.content.value;
@@ -104,7 +97,7 @@ export function VidPlayer() {
                             <h2>Comments</h2>
                             <div>
                                 <form onSubmit={handleCommentSubmit}>
-                                    <input type="text" name="content" id="content" placeholder="Add a comment..." className="comment-input" onChange={updateCommentContent} value={commentContent} />
+                                    <input type="text" name="content" id="content" placeholder="Add a comment..." className="comment-input" />
                                     <button type="submit" id="submit-button" >Comment</button>
                                 </form>
                             </div>
