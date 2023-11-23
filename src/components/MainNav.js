@@ -15,8 +15,8 @@ export function MainNav() {
             <ul id="nav-ul">
                 <li><Link to="/capytech-react" className="nav-link"><IoHomeSharp size={20} /> Home</Link></li>
                 <li><div className="searchBarContainer"><input placeholder="Search" className="searchBar" /> <FaSearch size={20} /></div></li>
-                {!user && <li><Link to="/login" className="nav-link">Login</Link></li>}
-                {!user && <li><Link to="/signup" className="nav-link">Sign Up</Link></li>}
+                {!user && <li><Link to="/capytech-react/login" className="nav-link">Login</Link></li>}
+                {!user && <li><Link to="/capytech-react/signup" className="nav-link">Sign Up</Link></li>}
                 {user && <li><Link to="/capytech-react" className="nav-link">{user.username}</Link></li>}
                 {user && <li><Link to="/capytech-react" className="nav-link" onClick={logoutService}>Logout</Link></li>}
             </ul>

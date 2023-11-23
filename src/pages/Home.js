@@ -14,16 +14,16 @@ import vid9Thumb from "../image/video9.jpg"
 import vid10Thumb from "../image/video10.jpg"
 
 export let streamArray = {
-    vid1: { imgSrc: vid1Thumb, path: "/video-1", title: "Wild Rift Highlights 1", appUser: "spkim0921", uploadDate: "2021-12-03" },
-    vid2: { imgSrc: vid2Thumb, path: "/video-2", title: "Wild Rift Highlights 2", appUser: "spkim0921", uploadDate: "2021-12-03" },
-    vid3: { imgSrc: vid3Thumb, path: "/video-3", title: "Wild Rift Highlights 3", appUser: "spkim0921", uploadDate: "2021-12-04" },
-    vid4: { imgSrc: vid4Thumb, path: "/video-4", title: "Wild Rift Highlights 4", appUser: "spkim0921", uploadDate: "2021-12-04" },
-    vid5: { imgSrc: vid5Thumb, path: "/video-5", title: "Wild Rift Highlights 5", appUser: "spkim0921", uploadDate: "2021-12-04" },
-    vid6: { imgSrc: vid6Thumb, path: "/video-6", title: "Wild Rift Highlights 6", appUser: "spkim0921", uploadDate: "2021-12-04" },
-    vid7: { imgSrc: vid7Thumb, path: "/video-7", title: "Wild Rift Highlights 7", appUser: "spkim0921", uploadDate: "2021-12-05" },
-    vid8: { imgSrc: vid8Thumb, path: "/video-8", title: "Wild Rift Highlights 8", appUser: "spkim0921", uploadDate: "2021-12-20" },
-    vid9: { imgSrc: vid9Thumb, path: "/video-9", title: "Wild Rift Highlights 9", appUser: "spkim0921", uploadDate: "2021-12-08" },
-    vid10: { imgSrc: vid10Thumb, path: "/video-10", title: "Wild Rift Highlights 10", appUser: "spkim0921", uploadDate: "2021-12-03" },
+    vid1: { imgSrc: vid1Thumb, path: "/capytech-react/videos/1", title: "Wild Rift Highlights 1", appUser: "spkim0921", uploadDate: "2021-12-03" },
+    vid2: { imgSrc: vid2Thumb, path: "/capytech-react/videos/2", title: "Wild Rift Highlights 2", appUser: "spkim0921", uploadDate: "2021-12-03" },
+    vid3: { imgSrc: vid3Thumb, path: "/capytech-react/videos/3", title: "Wild Rift Highlights 3", appUser: "spkim0921", uploadDate: "2021-12-04" },
+    vid4: { imgSrc: vid4Thumb, path: "/capytech-react/videos/4", title: "Wild Rift Highlights 4", appUser: "spkim0921", uploadDate: "2021-12-04" },
+    vid5: { imgSrc: vid5Thumb, path: "/capytech-react/videos/5", title: "Wild Rift Highlights 5", appUser: "spkim0921", uploadDate: "2021-12-04" },
+    vid6: { imgSrc: vid6Thumb, path: "/capytech-react/videos/6", title: "Wild Rift Highlights 6", appUser: "spkim0921", uploadDate: "2021-12-04" },
+    vid7: { imgSrc: vid7Thumb, path: "/capytech-react/videos/7", title: "Wild Rift Highlights 7", appUser: "spkim0921", uploadDate: "2021-12-05" },
+    vid8: { imgSrc: vid8Thumb, path: "/capytech-react/videos/8", title: "Wild Rift Highlights 8", appUser: "spkim0921", uploadDate: "2021-12-20" },
+    vid9: { imgSrc: vid9Thumb, path: "/capytech-react/videos/9", title: "Wild Rift Highlights 9", appUser: "spkim0921", uploadDate: "2021-12-08" },
+    vid10: { imgSrc: vid10Thumb, path: "/capytech-react/videos/10", title: "Wild Rift Highlights 10", appUser: "spkim0921", uploadDate: "2021-12-03" },
 }
 
 export function Home() {
