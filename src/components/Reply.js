@@ -28,15 +28,50 @@ export default function Reply(props) {
         setReplyMode(!replyMode)
     }
 
+    async function handleEditReply(e) {
+        e.preventDefault()
+        const content = e.target.content.value;
+        const videoId = props.videoId
+        const commentId = props.commentId
+        const replyId = props.replyId
+        const userId = props.userId
+        const date = props.date
+        const edited = true;
+        const deleted = false;
+        const updatedComment = { content, videoId, commentId, replyId, userId, date, edited, deleted };
+        const res = await axios.post(`${DOMAIN}/api/replies/${replyId}`, updatedComment)
+        toggleCommentEditMode()
+        if (res?.data.success) {
+            navigate(`/capytech-react/videos/${videoId}`)
+        }
+    }
+
+    async function handleDeleteReply(e) {
+        e.preventDefault()
+        const content = "[This comment was deleted]";
+        const videoId = props.videoId
+        const commentId = props.commentId
+        const replyId = props.replyId
+        const userId = props.userId
+        const date = props.date
+        const edited = false;
+        const deleted = true;
+        const updatedComment = { content, videoId, commentId, replyId, userId, date, edited, deleted };
+        const res = await axios.post(`${DOMAIN}/api/replies/${replyId}`, updatedComment)
+        if (res?.data.success) {
+            navigate(`/capytech-react/videos/${videoId}`)
+        }
+    }
+
     async function clickUpvote() {
         if (!user) return navigate(`/capytech-react/login`);
         if (userId === props.userId) return
         if (!props.replyLikes.find((replyLike) => replyLike.voterId === userId)) {
             const value = 1
-            const voterId = userId;
+            const videoId = props.videoId;
             const commentId = props.commentId
             const replyId = props.replyId
-            const videoId = props.videoId;
+            const voterId = userId;
             const vote = { value, videoId, commentId, replyId, voterId, };
             setDisliked(false)
             const res = await axios.post(`${DOMAIN}/api/replylikes`, vote);
@@ -80,29 +115,37 @@ export default function Reply(props) {
     return (
         <div className={styles.replyContainer}>
             <p className={styles.title}><strong>@{props.user}</strong> {props.date} {props.edited && "(edited)"}</p>
-            <p className={styles.content}>{props.content}</p>
-            <div className={styles.actions}>
-                {props.replyLikes.find((replyLike) => replyLike.voterId === userId) !== undefined && props.replyLikes.find((replyLike) => replyLike.voterId === userId).value > 0
-                    ? <div className={styles.likeBtn} onClick={neutralVote}>
-                        {<PiThumbsUpFill size={25} />}
+            {commentEditMode
+                ? <form onSubmit={handleEditReply}>
+                    <input type="text" name="content" id="content" value={editedContent} onChange={(e) => setEditedContent(e.target.value)} className={styles.textarea} required />
+                    <p><button type="submit" className={styles.submitBtn}>Update</button>
+                        <button onClick={toggleCommentEditMode} className={styles.submitBtn}>Cancel</button></p>
+                </form>
+                : <div>
+                    <p className={styles.content}>{props.content}</p>
+                    <div className={styles.actions}>
+                        {props.replyLikes.find((replyLike) => replyLike.voterId === userId) !== undefined && props.replyLikes.find((replyLike) => replyLike.voterId === userId).value > 0
+                            ? <div className={styles.likeBtn} onClick={neutralVote}>
+                                {<PiThumbsUpFill size={25} />}
+                            </div>
+                            :
+                            <div className={styles.likeBtn} onClick={clickUpvote}>
+                                {<PiThumbsUpDuotone size={25} />}
+                            </div>
+                        }
+                        {props.replyLikes.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
+                        {disliked
+                            ? <div className={styles.likeBtn} onClick={neutralVote}>
+                                {<PiThumbsDownFill size={25} />}
+                            </div>
+                            : <div className={styles.likeBtn} onClick={neutralVote}>
+                                {<PiThumbsDownLight size={25} />}
+                            </div>}
+                        {props.deleted ? "" : userId === props.userId && <button onClick={toggleCommentEditMode} className={styles.ownerActions}>Edit</button>}
+                        {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} onClick={handleDeleteReply} >Delete</button>}
+                        {userId && <button onClick={toggleReplyMode} className={styles.ownerActions}>Reply</button>}
                     </div>
-                    :
-                    <div className={styles.likeBtn} onClick={clickUpvote}>
-                        {<PiThumbsUpDuotone size={25} />}
-                    </div>
-                }
-                {props.replyLikes.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
-                {disliked
-                    ? <div className={styles.likeBtn} onClick={neutralVote}>
-                        {<PiThumbsDownFill size={25} />}
-                    </div>
-                    : <div className={styles.likeBtn} onClick={neutralVote}>
-                        {<PiThumbsDownLight size={25} />}
-                    </div>}
-                {props.deleted ? "" : userId === props.userId && <button onClick={toggleCommentEditMode} className={styles.ownerActions}>Edit</button>}
-                {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} >Delete</button>}
-                {userId && <button onClick={toggleReplyMode} className={styles.ownerActions}>Reply</button>}
-            </div>
+                </div>}
         </div>
     )
 }
