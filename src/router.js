@@ -12,6 +12,7 @@ import { Home, pageLoader } from './pages/Home';
 import { VidPlayer, vidPlayerLoader } from './pages/VidPlayer';
 import LoginPage from './pages/Login';
 import SignupPage from './pages/Signup';
+import ProfilePage, { profileLoader } from "./pages/Profile";
 
 export function Router() {
 
@@ -22,6 +23,7 @@ export function Router() {
                 <Route path="/capytech-react/login" element={<LoginPage />} />
                 <Route path="/capytech-react/signup" element={<SignupPage />} />
                 <Route path="/capytech-react/videos/:videoId" element={<VidPlayer />} loader={vidPlayerLoader} />
+                <Route path="/capytech-react/users/:userId" element={<ProfilePage />} loader={profileLoader} />
             </Route>
         )
     )

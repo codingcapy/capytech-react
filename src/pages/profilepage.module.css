@@ -1,0 +1,50 @@
+/*
+author: Paul Kim
+date: November 13, 2023
+version: 1.0
+description: profile page css for CapyTV
+ */
+
+.page {
+    margin: 20px;
+    padding: 10px;
+}
+
+.title {
+    text-align: center;
+}
+
+.thumbnails {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.thumbnail {
+    margin: 10px;
+    padding: 10px;
+    border: solid white 1px;
+    border-radius: 10px;
+    transition: all ease 0.5s;
+}
+
+.thumbnail:hover {
+    background-color: rgb(124, 124, 124);
+    transition: all ease 0.5s;
+}
+
+.navlink {
+    text-decoration: none;
+    color: white;
+}
+
+.editBtn {
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
+.editBtn:hover {
+    background-color: rgb(124, 124, 124);
+}
