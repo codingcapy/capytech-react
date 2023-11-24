@@ -28,6 +28,24 @@ export default function Reply(props) {
         setReplyMode(!replyMode)
     }
 
+    async function handleReplySubmit(e) {
+        e.preventDefault()
+        const content = `@${props.user} ${e.target.content.value}`;
+        const videoId = props.videoId;
+        const commentId = props.commentId;
+        const userId = getUserIdFromToken();
+        const date = formattedDate
+        const deleted = false
+        const edited = false
+        const newReply = { content, videoId, commentId, userId, date, deleted, edited };
+        const res = await axios.post(`${DOMAIN}/api/replies`, newReply);
+        toggleReplyMode()
+        if (res?.data.success) {
+            e.target.content.value = "";
+            navigate(`/capytech-react/videos/${videoId}`);
+        }
+    }
+
     async function handleEditReply(e) {
         e.preventDefault()
         const content = e.target.content.value;
@@ -145,6 +163,13 @@ export default function Reply(props) {
                         {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} onClick={handleDeleteReply} >Delete</button>}
                         {userId && <button onClick={toggleReplyMode} className={styles.ownerActions}>Reply</button>}
                     </div>
+                    {replyMode && <div className={styles.replyContainer}>
+                        <form onSubmit={handleReplySubmit}>
+                            <input type="text" name="content" id="content" placeholder="Add a reply" className={styles.textarea} required />
+                            <button type="submit" className={styles.submitBtn}>Reply</button>
+                            <button onClick={toggleReplyMode} className={styles.submitBtn}>Cancel</button>
+                        </form>
+                    </div>}
                 </div>}
         </div>
     )
