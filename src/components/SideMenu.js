@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: side menu component for CapyTV
+ */
+
 import { Link } from "react-router-dom"
 
 export function SideMenu() {

@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: signup page for CapyTV
+ */
+
 import axios from "axios"
 import DOMAIN from "../services/endpoint";
 import { useNavigate } from "react-router-dom"
@@ -20,7 +27,7 @@ export default function SignupPage() {
             setMessage(res?.data.message)
             navigate("/capytech-react/login")
         }
-        else{
+        else {
             setMessage(res?.data.message)
         }
     }

@@ -1,14 +1,19 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: main nav component for CapyTV
+ */
+
 import { Link } from "react-router-dom";
 import useAuthStore from "../store/AuthStore";
-import { getUserIdFromToken } from "../services/jwt.service";
 import { FaSearch } from "react-icons/fa";
 import { IoHomeSharp } from 'react-icons/io5'
 
 export function MainNav() {
 
     const { logoutService, user } = useAuthStore((state) => state)
-    const userId = getUserIdFromToken()
 
     return (
         <nav id="main-nav">

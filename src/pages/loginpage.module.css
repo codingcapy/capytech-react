@@ -1,17 +1,22 @@
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: css for login page for CapyTV
+ */
 
-
-.loginTitle{
-text-align: center;
+.loginTitle {
+    text-align: center;
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column;
     max-width: 300px;
     margin: auto;
 }
 
-.input{
+.input {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -20,7 +25,7 @@ text-align: center;
     color: white;
 }
 
-.loginBtn{
+.loginBtn {
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -29,7 +34,7 @@ text-align: center;
     border: none;
 }
 
-.signup{
+.signup {
     text-align: center;
     color: white;
     padding: 10px;

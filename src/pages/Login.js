@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: login page for CapyTV
+ */
+
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import useAuthStore from "../store/AuthStore"

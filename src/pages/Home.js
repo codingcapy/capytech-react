@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: home page for CapyTV
+ */
+
 import axios from "axios"
 import DOMAIN from "../services/endpoint"
 import { Link } from "react-router-dom"

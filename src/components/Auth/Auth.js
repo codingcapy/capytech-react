@@ -1,7 +1,13 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: auth for CapyTV
+ */
 
 import { jwtDecode } from "jwt-decode";
-import { setSession,getAccessToken } from "../../services/jwt.service";
+import { setSession, getAccessToken } from "../../services/jwt.service";
 import useAuthStore from "../../store/AuthStore";
 import { useEffect } from "react";
 

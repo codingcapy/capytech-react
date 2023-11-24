@@ -1,28 +1,33 @@
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: css for comment component for CapyTV
+ */
 
-
-.commentContainer{
+.commentContainer {
     margin: 10px;
 }
 
-.title{
+.title {
     margin: 0;
     padding: 0;
 }
 
-.content{
+.content {
     margin: 0;
     padding: 0;
 }
 
-.likeBtn{
+.likeBtn {
     padding: 10px;
 }
 
-.actions{
+.actions {
     display: flex;
 }
 
-.ownerActions{
+.ownerActions {
     padding-right: 10px;
     background-color: transparent;
     border: none;
@@ -30,7 +35,7 @@
     font-weight: bold;
 }
 
-.textarea{
+.textarea {
     border: solid 1px white;
     background-color: transparent;
     border-radius: 10px;
@@ -38,7 +43,7 @@
     color: white;
 }
 
-.submitBtn{
+.submitBtn {
     background-color: grey;
     color: white;
     border: none;
@@ -46,6 +51,6 @@
     border-radius: 10px;
 }
 
-.replyContainer{
+.replyContainer {
     margin-bottom: 10px;
 }

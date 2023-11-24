@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: comment component for CapyTV
+ */
+
 import axios from "axios"
 import DOMAIN from "../services/endpoint";
 import useAuthStore from "../store/AuthStore"
@@ -158,17 +165,17 @@ export function Comment(props) {
                         {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} onClick={handleDeleteComment}>Delete</button>}
                         {userId && <button onClick={toggleReplyMode} className={styles.ownerActions}>Reply</button>}
                     </div>
-                        {replyMode && <div className={styles.replyContainer}>
-                            <form onSubmit={handleReplySubmit}>
-                                <input type="text" name="content" id="content" placeholder="Add a reply" className={styles.textarea} required />
-                                <button type="submit" className={styles.submitBtn}>Reply</button>
-                                <button onClick={toggleReplyMode} className={styles.submitBtn}>Cancel</button>
-                            </form>
-                        </div>}
+                    {replyMode && <div className={styles.replyContainer}>
+                        <form onSubmit={handleReplySubmit}>
+                            <input type="text" name="content" id="content" placeholder="Add a reply" className={styles.textarea} required />
+                            <button type="submit" className={styles.submitBtn}>Reply</button>
+                            <button onClick={toggleReplyMode} className={styles.submitBtn}>Cancel</button>
+                        </form>
+                    </div>}
                 </div>}
             <div>
                 {props.replies.map((reply) =>
-                    <Reply key={reply._doc.replyId} user={reply.userName} userId={reply._doc.userId} date={reply._doc.date} edited={reply._doc.edited} deleted={reply._doc.deleted} content={reply._doc.content} replyLikes={props.replyLikes.filter((replyLike) => replyLike.replyId === reply._doc.replyId)} replyId={reply._doc.replyId} videoId={reply._doc.videoId} commentId={reply._doc.commentId}/>)}
+                    <Reply key={reply._doc.replyId} user={reply.userName} userId={reply._doc.userId} date={reply._doc.date} edited={reply._doc.edited} deleted={reply._doc.deleted} content={reply._doc.content} replyLikes={props.replyLikes.filter((replyLike) => replyLike.replyId === reply._doc.replyId)} replyId={reply._doc.replyId} videoId={reply._doc.videoId} commentId={reply._doc.commentId} />)}
             </div>
         </div>
     )

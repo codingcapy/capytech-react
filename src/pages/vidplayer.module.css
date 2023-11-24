@@ -1,16 +1,22 @@
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: css for vidplayer page for CapyTV
+ */
 
-.vidPlayer{
+.vidPlayer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sub{
+.sub {
     display: flex;
     margin: 10px;
 }
 
-.likes{
+.likes {
     margin-left: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -21,12 +27,12 @@
     font-size: 20px;
 }
 
-.like{
+.like {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.commentBtn{
+.commentBtn {
     background-color: grey;
     color: white;
     right: 20px;

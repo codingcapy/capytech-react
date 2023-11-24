@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: zustand auth store for json webtoken services for CapyTV
+ */
+
 import DOMAIN from "../services/endpoint";
 import axios from "axios";
 import { setSession } from "../services/jwt.service";

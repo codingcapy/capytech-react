@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: reply component for CapyTV
+ */
+
 import axios from "axios"
 import DOMAIN from "../services/endpoint";
 import useAuthStore from "../store/AuthStore"

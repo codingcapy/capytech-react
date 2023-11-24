@@ -1,4 +1,11 @@
 
+/*
+author: Paul Kim
+date: November 22, 2023
+version: 1.0
+description: vidplayer page for CapyTV
+ */
+
 import axios from "axios"
 import DOMAIN from "../services/endpoint"
 import useAuthStore from "../store/AuthStore";
@@ -154,7 +161,7 @@ export function VidPlayer() {
                         </div>}
                     </div>
                     <div>
-                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} videoId={comment._doc.videoId} userId={comment._doc.userId} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} edited={comment._doc.edited} deleted={comment._doc.deleted} commentLikes={data.commentLikes.filter((commentLike) => commentLike.commentId === comment._doc.commentId)} replies={data.replies.filter((reply)=>reply._doc.commentId === comment._doc.commentId)} replyLikes={data.replyLikes.filter((replyLike)=>replyLike.commentId === comment._doc.commentId)}/>)}
+                        {data.comments.map((comment) => <Comment key={comment._doc.commentId} content={comment._doc.content} videoId={comment._doc.videoId} userId={comment._doc.userId} user={comment.userName} date={comment._doc.date} commentId={comment._doc.commentId} edited={comment._doc.edited} deleted={comment._doc.deleted} commentLikes={data.commentLikes.filter((commentLike) => commentLike.commentId === comment._doc.commentId)} replies={data.replies.filter((reply) => reply._doc.commentId === comment._doc.commentId)} replyLikes={data.replyLikes.filter((replyLike) => replyLike.commentId === comment._doc.commentId)} />)}
                     </div>
                 </div>
                 <div id="suggested-menu">
