@@ -61,7 +61,7 @@ export function Comment(props) {
     }
 
     async function clickUpvote() {
-        if (!user) return;
+        if (!user) return navigate(`/capytech-react/login`);
         if (userId === props.userId) return
         if (!props.commentLikes.find((commentLike) => commentLike.voterId === userId)) {
             const value = 1
@@ -91,7 +91,7 @@ export function Comment(props) {
     }
 
     async function neutralVote() {
-        if (!user) return;
+        if (!user) return navigate(`/capytech-react/login`);
         if (userId === props.userId) return
         const value = 0
         const voterId = userId;
@@ -137,6 +137,7 @@ export function Comment(props) {
                             </div>}
                         {props.deleted ? "" : userId === props.userId && <button onClick={toggleCommentEditMode} className={styles.ownerActions}>Edit</button>}
                         {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} onClick={handleDeleteComment}>Delete</button>}
+                        {userId && <button onClick={toggleReplyMode} className={styles.ownerActions}>Reply</button>}
                     </div>
                 </div>}
         </div>
