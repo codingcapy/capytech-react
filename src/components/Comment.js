@@ -168,7 +168,7 @@ export function Comment(props) {
                 </div>}
             <div>
                 {props.replies.map((reply) =>
-                    <Reply key={reply._doc.replyId} user={reply.userName} date={reply._doc.date} edited={reply._doc.edited} deleted={reply._doc.deleted} content={reply._doc.content} replyLikes={props.replyLikes.filter((replyLike) => replyLike.replyId === reply.replyId)} />)}
+                    <Reply key={reply._doc.replyId} user={reply.userName} userId={reply._doc.userId} date={reply._doc.date} edited={reply._doc.edited} deleted={reply._doc.deleted} content={reply._doc.content} replyLikes={props.replyLikes.filter((replyLike) => replyLike.replyId === reply.replyId)} />)}
             </div>
         </div>
     )

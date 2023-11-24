@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { PiThumbsUpDuotone, PiThumbsUpFill, PiThumbsDownLight, PiThumbsDownFill } from "react-icons/pi";
 import styles from "./reply.module.css"
 
-export default function Reply(props){
+export default function Reply(props) {
 
     const { user } = useAuthStore((state) => state)
     const userId = getUserIdFromToken();
@@ -28,10 +28,32 @@ export default function Reply(props){
         setReplyMode(!replyMode)
     }
 
-    return(
+    return (
         <div className={styles.replyContainer}>
-             <p className={styles.title}><strong>@{props.user}</strong> {props.date} {props.edited && "(edited)"}</p>
-             <p className={styles.content}>{props.content}</p>
+            <p className={styles.title}><strong>@{props.user}</strong> {props.date} {props.edited && "(edited)"}</p>
+            <p className={styles.content}>{props.content}</p>
+            <div className={styles.actions}>
+                {props.replyLikes.find((replyLike) => replyLike.voterId === userId) !== undefined && props.replyLikes.find((replyLike) => replyLike.voterId === userId).value > 0
+                    ? <div className={styles.likeBtn} >
+                        {<PiThumbsUpFill size={25} />}
+                    </div>
+                    :
+                    <div className={styles.likeBtn} >
+                        {<PiThumbsUpDuotone size={25} />}
+                    </div>
+                }
+                {props.replyLikes.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
+                {disliked
+                    ? <div className={styles.likeBtn}>
+                        {<PiThumbsDownFill size={25} />}
+                    </div>
+                    : <div className={styles.likeBtn}>
+                        {<PiThumbsDownLight size={25} />}
+                    </div>}
+                {props.deleted ? "" : userId === props.userId && <button onClick={toggleCommentEditMode} className={styles.ownerActions}>Edit</button>}
+                {props.deleted ? "" : userId === props.userId && <button className={styles.ownerActions} >Delete</button>}
+                {userId && <button onClick={toggleReplyMode} className={styles.ownerActions}>Reply</button>}
+            </div>
         </div>
     )
 }
