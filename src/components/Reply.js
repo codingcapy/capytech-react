@@ -28,26 +28,75 @@ export default function Reply(props) {
         setReplyMode(!replyMode)
     }
 
+    async function clickUpvote() {
+        if (!user) return navigate(`/capytech-react/login`);
+        if (userId === props.userId) return
+        if (!props.replyLikes.find((replyLike) => replyLike.voterId === userId)) {
+            const value = 1
+            const voterId = userId;
+            const commentId = props.commentId
+            const replyId = props.replyId
+            const videoId = props.videoId;
+            const vote = { value, videoId, commentId, replyId, voterId, };
+            setDisliked(false)
+            const res = await axios.post(`${DOMAIN}/api/replylikes`, vote);
+            if (res?.data.success) {
+                navigate(`/capytech-react/videos/${videoId}`);
+            }
+        }
+        else if (props.replyLikes.filter((replyLike) => replyLike.voterId === parseInt(userId))[0].value === 0) {
+            const value = 1
+            const videoId = props.videoId;
+            const commentId = props.commentId
+            const replyId = props.replyId
+            const voterId = userId;
+            const replyLikeId = props.replyLikes.filter((replyLike) => replyLike.voterId === parseInt(userId))[0].replyLikeId;
+            const updatedLike = { value, videoId, commentId, replyId, voterId, replyLikeId }
+            setDisliked(false)
+            const res = await axios.post(`${DOMAIN}/api/replylikes/${replyLikeId}`, updatedLike)
+            if (res?.data.success) {
+                navigate(`/capytech-react/videos/${videoId}`);
+            }
+        }
+    }
+
+    async function neutralVote() {
+        if (!user) return navigate(`/capytech-react/login`);
+        if (userId === props.userId) return
+        const value = 0
+        const videoId = props.videoId;
+        const commentId = props.commentId
+        const replyId = props.replyId
+        const voterId = userId;
+        const replyLikeId = props.replyLikes.filter((replyLike) => replyLike.voterId === parseInt(userId))[0].replyLikeId;
+        const updatedLike = { value, videoId, commentId, replyId, voterId, replyLikeId }
+        setDisliked(!disliked)
+        const res = await axios.post(`${DOMAIN}/api/replylikes/${replyLikeId}`, updatedLike)
+        if (res?.data.success) {
+            navigate(`/capytech-react/videos/${videoId}`);
+        }
+    }
+
     return (
         <div className={styles.replyContainer}>
             <p className={styles.title}><strong>@{props.user}</strong> {props.date} {props.edited && "(edited)"}</p>
             <p className={styles.content}>{props.content}</p>
             <div className={styles.actions}>
                 {props.replyLikes.find((replyLike) => replyLike.voterId === userId) !== undefined && props.replyLikes.find((replyLike) => replyLike.voterId === userId).value > 0
-                    ? <div className={styles.likeBtn} >
+                    ? <div className={styles.likeBtn} onClick={neutralVote}>
                         {<PiThumbsUpFill size={25} />}
                     </div>
                     :
-                    <div className={styles.likeBtn} >
+                    <div className={styles.likeBtn} onClick={clickUpvote}>
                         {<PiThumbsUpDuotone size={25} />}
                     </div>
                 }
                 {props.replyLikes.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
                 {disliked
-                    ? <div className={styles.likeBtn}>
+                    ? <div className={styles.likeBtn} onClick={neutralVote}>
                         {<PiThumbsDownFill size={25} />}
                     </div>
-                    : <div className={styles.likeBtn}>
+                    : <div className={styles.likeBtn} onClick={neutralVote}>
                         {<PiThumbsDownLight size={25} />}
                     </div>}
                 {props.deleted ? "" : userId === props.userId && <button onClick={toggleCommentEditMode} className={styles.ownerActions}>Edit</button>}
