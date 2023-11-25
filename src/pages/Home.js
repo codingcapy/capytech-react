@@ -11,6 +11,7 @@ import DOMAIN from "../services/endpoint"
 import { Link } from "react-router-dom"
 import { SideMenu } from "../components/SideMenu"
 import { useLoaderData } from "react-router-dom"
+import useSearchStore from "../store/SearchStore"
 import vid1Thumb from "../image/video1.jpg"
 import vid2Thumb from "../image/video2.jpg"
 import vid3Thumb from "../image/video3.jpg"
@@ -27,6 +28,7 @@ export let videoArray = [vid1Thumb, vid2Thumb, vid3Thumb, vid4Thumb, vid5Thumb, 
 export function Home() {
 
     const videos = useLoaderData()
+    const { content } = useSearchStore((state) => state)
 
     return (
         <main>
@@ -36,14 +38,25 @@ export function Home() {
                 <SideMenu />
                 <div id="videos-dashboard">
                     {videos.map((video) =>
-                        <div key={video.videoId} className="thumbnail-container">
-                            <Link to={`/capytech-react/videos/${video.videoId}`} style={{ textDecoration: 'none' }}>
-                                <img src={videoArray[video.videoId - 1]} className="thumbnail" alt="video thumbnail" />
-                                <h2 className="video-meta">{video.title}</h2>
-                                <p className="video-meta">{video.creator}</p>
-                                <p className="video-meta">{video.uploadDate}</p>
-                            </Link>
-                        </div>
+                        content !== ""
+                            ? video.title.toLowerCase().includes(content.toLowerCase())
+                                ? <div key={video.videoId} className="thumbnail-container">
+                                    <Link to={`/capytech-react/videos/${video.videoId}`} style={{ textDecoration: 'none' }}>
+                                        <img src={videoArray[video.videoId - 1]} className="thumbnail" alt="video thumbnail" />
+                                        <h2 className="video-meta">{video.title}</h2>
+                                        <p className="video-meta">{video.creator}</p>
+                                        <p className="video-meta">{video.uploadDate}</p>
+                                    </Link>
+                                </div>
+                                : ""
+                            : <div key={video.videoId} className="thumbnail-container">
+                                <Link to={`/capytech-react/videos/${video.videoId}`} style={{ textDecoration: 'none' }}>
+                                    <img src={videoArray[video.videoId - 1]} className="thumbnail" alt="video thumbnail" />
+                                    <h2 className="video-meta">{video.title}</h2>
+                                    <p className="video-meta">{video.creator}</p>
+                                    <p className="video-meta">{video.uploadDate}</p>
+                                </Link>
+                            </div>
                     )}
                 </div>
             </div>
