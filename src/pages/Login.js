@@ -7,7 +7,7 @@ description: login page for CapyTV
  */
 
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useAuthStore from "../store/AuthStore"
 import styles from "./loginpage.module.css"
 
@@ -44,7 +44,7 @@ export default function LoginPage() {
                 <input type="password" name="password" id="password" placeholder="Password" required className={styles.input} />
                 <button type="submit" className={styles.loginBtn}>Login</button>
                 {authLoading ? <h2>Loading...</h2> : null}
-                <a href="/capytech-react/signup" className={styles.signup}>Sign Up</a>
+                <Link to="/capytech-react/signup" className={styles.signup}>Sign Up</Link>
             </form>
             <p className={styles.loginTitle}>{message}</p>
         </div>
