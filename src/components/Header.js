@@ -11,7 +11,7 @@ import { MainNav } from "./MainNav"
 import capyness from "../image/capyness.png"
 
 export function Header() {
-    const [showNav, setShowNav] = useState(true);
+    const [showNav, setShowNav] = useState(window.innerWidth > 500 ? true : false);
     return (
         <header>
             <div id="top-bar">
@@ -20,7 +20,7 @@ export function Header() {
                     setShowNav(!showNav)
                 }}>&#127828;</button>
             </div>
-            {showNav && <MainNav />}
+            {showNav && <MainNav setShowNav={setShowNav}/>}
         </header>
     )
 }
