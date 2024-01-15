@@ -32,8 +32,6 @@ export function Home() {
 
     return (
         <main>
-            <h1 className="main-title" >Capytech React Project</h1>
-            <p className="main-title">You are now viewing the Capytech React website.</p>
             <div id="main-container">
                 <SideMenu />
                 <div id="videos-dashboard">
